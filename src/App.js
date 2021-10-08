@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     const consultarAPI = async () => {
       if (consulta) {
-        console.log("Comienza a hacer la consulta");
         guardarCargando(true);
         const appId = process.env.REACT_APP_ID_WEATHER;
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
