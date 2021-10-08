@@ -58,11 +58,13 @@ const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
       </div>
 
       <div className="input-field col s12">
-        <input
+        <button
+          className="btn waves-effect waves-light green"
           type="submit"
-          value="Buscar Clima"
-          className="waves-effect waves-light btn-large btn-block green accent-4"
-        />
+          name="consultar"
+        >
+          Buscar Clima
+        </button>
       </div>
     </form>
   );

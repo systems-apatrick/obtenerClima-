@@ -1,8 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
+import "dotenv/config.js";
 import Clima from "./components/Clima";
 import Error from "./components/Error";
 import Formulario from "./components/Formulario";
 import Header from "./components/Header";
+import Sppiner from "./components/Spinner";
 
 function App() {
   // state de appjs
@@ -14,13 +16,16 @@ function App() {
   const [consulta, guardarConsulta] = useState(false);
   const [resultado, guardarResultado] = useState({});
   const [error, guardarError] = useState(false);
+  const [cargando, guardarCargando] = useState(false);
 
   const { ciudad, pais } = busqueda;
 
   useEffect(() => {
     const consultarAPI = async () => {
       if (consulta) {
-        const appId = "e34c0d38fa742e22ab227c6e1a875f67";
+        console.log("Comienza a hacer la consulta");
+        guardarCargando(true);
+        const appId = process.env.REACT_APP_ID_WEATHER;
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
 
         const respuesta = await fetch(url);
@@ -34,7 +39,11 @@ function App() {
         } else {
           guardarError(false);
         }
+        console.log("Termina a hacer la consulta");
       }
+      setTimeout(() => {
+        guardarCargando(false);
+      }, 3000);
     };
     consultarAPI();
 
@@ -62,7 +71,9 @@ function App() {
             </div>
           </div>
           <div className="row">
-            <div className="col m12 s12">{componente}</div>
+            <div className="col m12 s12">
+              {cargando ? <Sppiner /> : componente}
+            </div>
           </div>
         </div>
       </div>
