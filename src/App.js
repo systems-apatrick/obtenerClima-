@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "dotenv/config.js";
+import dotenv from "dotenv";
 import Clima from "./components/Clima";
 import Error from "./components/Error";
 import Formulario from "./components/Formulario";
 import Header from "./components/Header";
 import Sppiner from "./components/Spinner";
+dotenv.config();
 
 function App() {
   // state de appjs
@@ -21,7 +22,6 @@ function App() {
   const { ciudad, pais } = busqueda;
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_ID_WEATHER);
     const consultarAPI = async () => {
       if (consulta) {
         console.log("Comienza a hacer la consulta");
