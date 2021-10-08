@@ -21,6 +21,7 @@ function App() {
   const { ciudad, pais } = busqueda;
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_ID_WEATHER);
     const consultarAPI = async () => {
       if (consulta) {
         console.log("Comienza a hacer la consulta");
